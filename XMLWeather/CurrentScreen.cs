@@ -43,7 +43,7 @@ namespace XMLWeather
 
             //convert and output sunrise/sunset times --- move into Form1 later
             Form1.days[0].sunRise = convertTimezone(Form1.days[0].sunRise, Form1.days[0].timezone);
-            Form1.days[0].sunSet = convertTimezone(Form1.days[0].sunSet, Form1.days[0].timezone);
+            Form1.days[0].sunSet = convertTimezone(Form1.days[0].sunSet, Form1.days[0].timezone);  
             sunRiseOutput.Text = formatSunData(Form1.days[0].sunRise);
             sunSetOutput.Text = formatSunData(Form1.days[0].sunSet);
 
