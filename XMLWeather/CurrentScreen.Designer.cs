@@ -33,13 +33,13 @@
             this.forecastLabel = new System.Windows.Forms.Label();
             this.testingLabel = new System.Windows.Forms.Label();
             this.cityInput = new System.Windows.Forms.TextBox();
-            this.pictureBoxTest = new System.Windows.Forms.PictureBox();
+            this.searchIcon = new System.Windows.Forms.PictureBox();
             this.searchLineLabel = new System.Windows.Forms.Label();
             this.searchLine = new System.Windows.Forms.Label();
             this.timeOutput = new System.Windows.Forms.Label();
             this.dayOfWeekOutput = new System.Windows.Forms.Label();
             this.conditionOutput = new System.Windows.Forms.Label();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.currentConditionImage = new System.Windows.Forms.PictureBox();
             this.bigTempOutput = new System.Windows.Forms.Label();
             this.dailyLowOutput = new System.Windows.Forms.Label();
             this.dailyHighOutput = new System.Windows.Forms.Label();
@@ -63,8 +63,8 @@
             this.highLow4 = new System.Windows.Forms.Label();
             this.highLow5 = new System.Windows.Forms.Label();
             this.celsius1 = new System.Windows.Forms.Label();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxTest)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.searchIcon)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.currentConditionImage)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.forecastIcon1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.forecastIcon3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.forecastIcon2)).BeginInit();
@@ -124,17 +124,17 @@
             this.cityInput.TabIndex = 44;
             this.cityInput.Text = "Stratford,CA";
             // 
-            // pictureBoxTest
+            // searchIcon
             // 
-            this.pictureBoxTest.BackColor = System.Drawing.Color.Transparent;
-            this.pictureBoxTest.Image = global::XMLWeather.Properties.Resources.Search_Icon;
-            this.pictureBoxTest.Location = new System.Drawing.Point(13, 46);
-            this.pictureBoxTest.Name = "pictureBoxTest";
-            this.pictureBoxTest.Size = new System.Drawing.Size(52, 39);
-            this.pictureBoxTest.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pictureBoxTest.TabIndex = 48;
-            this.pictureBoxTest.TabStop = false;
-            this.pictureBoxTest.Click += new System.EventHandler(this.pictureBoxTest_Click);
+            this.searchIcon.BackColor = System.Drawing.Color.Transparent;
+            this.searchIcon.Image = global::XMLWeather.Properties.Resources.Search_Icon;
+            this.searchIcon.Location = new System.Drawing.Point(13, 46);
+            this.searchIcon.Name = "searchIcon";
+            this.searchIcon.Size = new System.Drawing.Size(52, 39);
+            this.searchIcon.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.searchIcon.TabIndex = 48;
+            this.searchIcon.TabStop = false;
+            this.searchIcon.Click += new System.EventHandler(this.pictureBoxTest_Click);
             // 
             // searchLineLabel
             // 
@@ -191,16 +191,16 @@
             this.conditionOutput.Text = "Light Thunderstorm";
             this.conditionOutput.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             // 
-            // pictureBox1
+            // currentConditionImage
             // 
-            this.pictureBox1.BackColor = System.Drawing.Color.Transparent;
-            this.pictureBox1.Image = global::XMLWeather.Properties.Resources.Partial_Cloudy_Day;
-            this.pictureBox1.Location = new System.Drawing.Point(25, 123);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(64, 53);
-            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pictureBox1.TabIndex = 54;
-            this.pictureBox1.TabStop = false;
+            this.currentConditionImage.BackColor = System.Drawing.Color.Transparent;
+            this.currentConditionImage.Image = global::XMLWeather.Properties.Resources.Partial_Cloudy_Day;
+            this.currentConditionImage.Location = new System.Drawing.Point(25, 123);
+            this.currentConditionImage.Name = "currentConditionImage";
+            this.currentConditionImage.Size = new System.Drawing.Size(64, 53);
+            this.currentConditionImage.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.currentConditionImage.TabIndex = 54;
+            this.currentConditionImage.TabStop = false;
             // 
             // bigTempOutput
             // 
@@ -210,7 +210,7 @@
             this.bigTempOutput.Name = "bigTempOutput";
             this.bigTempOutput.Size = new System.Drawing.Size(122, 78);
             this.bigTempOutput.TabIndex = 55;
-            this.bigTempOutput.Text = "-23";
+            this.bigTempOutput.Text = "2";
             this.bigTempOutput.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // dailyLowOutput
@@ -456,7 +456,7 @@
             // 
             this.celsius1.BackColor = System.Drawing.Color.Transparent;
             this.celsius1.Font = new System.Drawing.Font("Century Gothic", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.celsius1.Location = new System.Drawing.Point(222, 123);
+            this.celsius1.Location = new System.Drawing.Point(195, 123);
             this.celsius1.Name = "celsius1";
             this.celsius1.Size = new System.Drawing.Size(30, 20);
             this.celsius1.TabIndex = 78;
@@ -494,9 +494,9 @@
             this.Controls.Add(this.dailyLowOutput);
             this.Controls.Add(this.conditionOutput);
             this.Controls.Add(this.bigTempOutput);
-            this.Controls.Add(this.pictureBox1);
+            this.Controls.Add(this.currentConditionImage);
             this.Controls.Add(this.timeOutput);
-            this.Controls.Add(this.pictureBoxTest);
+            this.Controls.Add(this.searchIcon);
             this.Controls.Add(this.cityInput);
             this.Controls.Add(this.searchLine);
             this.Controls.Add(this.searchLineLabel);
@@ -505,8 +505,8 @@
             this.Controls.Add(this.currentOutput);
             this.Name = "CurrentScreen";
             this.Size = new System.Drawing.Size(270, 480);
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxTest)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.searchIcon)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.currentConditionImage)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.forecastIcon1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.forecastIcon3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.forecastIcon2)).EndInit();
@@ -523,13 +523,13 @@
         private System.Windows.Forms.Label forecastLabel;
         private System.Windows.Forms.Label testingLabel;
         private System.Windows.Forms.TextBox cityInput;
-        private System.Windows.Forms.PictureBox pictureBoxTest;
+        private System.Windows.Forms.PictureBox searchIcon;
         private System.Windows.Forms.Label searchLineLabel;
         private System.Windows.Forms.Label searchLine;
         private System.Windows.Forms.Label timeOutput;
         private System.Windows.Forms.Label dayOfWeekOutput;
         private System.Windows.Forms.Label conditionOutput;
-        private System.Windows.Forms.PictureBox pictureBox1;
+        private System.Windows.Forms.PictureBox currentConditionImage;
         private System.Windows.Forms.Label bigTempOutput;
         private System.Windows.Forms.Label dailyLowOutput;
         private System.Windows.Forms.Label dailyHighOutput;

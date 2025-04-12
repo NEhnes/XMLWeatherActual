@@ -7,7 +7,7 @@ namespace XMLWeather
 {
     public class Day
     {
-        public string date, currentTemp, currentTimeUTC, currentTimeLocal, AMPM, condition, location, tempHigh, tempLow, feelsLike, 
+        public string date, currentTemp, currentTimeUTC, currentTimeLocal, AMPM, conditionText, conditionCode, location, tempHigh, tempLow, feelsLike, 
             windSpeed, windDirection, precipitation, sunRise, sunSet, lastUpdate;
 
         public static DateTime currentDateTime = new DateTime();
@@ -16,7 +16,7 @@ namespace XMLWeather
 
         public Day()
         {
-            date = currentTemp = currentTimeUTC = currentTimeLocal = AMPM = condition = location = tempHigh = tempLow = feelsLike = windSpeed
+            date = currentTemp = currentTimeUTC = currentTimeLocal = AMPM = conditionText = conditionCode =location = tempHigh = tempLow = feelsLike = windSpeed
                  = windDirection = precipitation = sunRise = sunSet = lastUpdate = "";
         }
     }

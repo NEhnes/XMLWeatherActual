@@ -27,14 +27,16 @@ namespace XMLWeather
                 Form1.days[i].tempHigh = roundTemp(Form1.days[i].tempHigh);
             }
 
-            //convert EST to UTC, handle edge cases
-            //Form1.days[0].currentTimeUTC = convertTimezone(Form1.days[0].currentTimeLocal, Form1.days[0].timezone);
-            
-
             //START OF CURRENT
 
             //curent temperature labels
             bigTempOutput.Text = Form1.days[0].currentTemp;
+            int digits = Form1.days[0].currentTemp.Length;
+            celsius1.Location =
+                (digits == 1) ? new Point(195, 123) :
+                (digits == 2) ? new Point(212, 123) :
+                new Point(222, 123);
+
             dailyLowOutput.Text = $"L: {Form1.days[0].tempLow}";
             dailyHighOutput.Text = $"H: {Form1.days[0].tempHigh}";
 
@@ -48,7 +50,49 @@ namespace XMLWeather
             sunSetOutput.Text = formatSunData(Form1.days[0].sunSet);
 
             //condition
-            conditionOutput.Text = Form1.days[0].condition;
+            conditionOutput.Text = Form1.days[0].conditionText;      //how can I not repeat myself with this switch? 
+            switch (Form1.days[0].conditionCode)
+            {
+                case "01d":
+                    currentConditionImage.Image = Properties.Resources._01d;
+                    break;
+                case "01n":
+                    currentConditionImage.Image = Properties.Resources._01n;
+                    break;
+                case "02d":
+                    currentConditionImage.Image = Properties.Resources._02d;
+                    break;
+                case "03d":
+                case "03n":
+                    currentConditionImage.Image = Properties.Resources._03d;
+                    break;
+                case "04d":
+                case "04n":
+                    currentConditionImage.Image = Properties.Resources._04d;
+                    break;
+                case "09d":
+                case "09n":
+                    currentConditionImage.Image = Properties.Resources._09d;
+                    break;
+                case "10d":
+                    currentConditionImage.Image = Properties.Resources._10d;
+                    break;
+                case "10n":
+                    currentConditionImage.Image = Properties.Resources._10n;
+                    break;
+                case "11d":
+                case "11n":
+                    currentConditionImage.Image = Properties.Resources._11d;
+                    break;
+                case "13d":
+                case "13n":
+                    currentConditionImage.Image = Properties.Resources._13d;
+                    break;
+                case "50d":
+                case "50n":
+                    currentConditionImage.Image = Properties.Resources._50d;
+                    break;
+            }
 
             //top left day info
             dayOfWeekOutput.Text = Day.currentDateTime.ToString("ddd, MMM dd");
@@ -56,8 +100,9 @@ namespace XMLWeather
 
             //START OF FORECAST
 
-            string[] forecastNames = new string[] {"forecastTemp1", "forecastTemp2", "forecastTemp3", "forecastTemp4", "forecastTemp5" };
-            string[] highLowNames = new string[] {"highLow1", "highLow2", "highLow3", "highLow4", "highLow5" };
+            string[] forecastNames = new string[] {"forecastTemp1", "forecastTemp2", "forecastTemp3", "forecastTemp4", "forecastTemp5"};
+            string[] highLowNames = new string[] {"highLow1", "highLow2", "highLow3", "highLow4", "highLow5"};
+            string[] forecastIcons = new string[] {"forecastIcon1", "forecastIcon2", "forecastIcon3", "forecastIcon4", "forecastIcon5" };
 
             for (int i = 0; i < forecastNames.Length; i++)
             {
@@ -65,7 +110,7 @@ namespace XMLWeather
 
                 currentLabel.Text = roundTemp(Form1.days[i + 1].currentTemp);
             }
-
+            
             for (int i = 0; i < highLowNames.Length; i++)
             {
                 Label currentLabel = (Label)this.Controls.Find(highLowNames[i], true).FirstOrDefault();
@@ -73,7 +118,57 @@ namespace XMLWeather
                 currentLabel.Text = "L: " + roundTemp(Form1.days[i + 1].tempLow);
                 currentLabel.Text += "\nH: " + roundTemp(Form1.days[i + 1].tempHigh);
             }
+
+            for (int i = 0; i < forecastIcons.Length; i++)
+            {
+                PictureBox currentIcon = (PictureBox)this.Controls.Find(forecastIcons[i], true).FirstOrDefault();
+
+                switch (Form1.days[i+1].conditionCode)
+                {
+                    case "01d":
+                        currentIcon.Image = Properties.Resources._01d;
+                        break;
+                    case "01n":
+                        currentIcon.Image = Properties.Resources._01n;
+                        break;
+                    case "02d":
+                        currentIcon.Image = Properties.Resources._02d;
+                        break;
+                    case "03d":
+                    case "03n":
+                        currentIcon.Image = Properties.Resources._03d;
+                        break;
+                    case "04d":
+                    case "04n":
+                        currentIcon.Image = Properties.Resources._04d;
+                        break;
+                    case "09d":
+                    case "09n":
+                        currentIcon.Image = Properties.Resources._09d;
+                        break;
+                    case "10d":
+                        currentIcon.Image = Properties.Resources._10d;
+                        break;
+                    case "10n":
+                        currentIcon.Image = Properties.Resources._10n;
+                        break;
+                    case "11d":
+                    case "11n":
+                        currentIcon.Image = Properties.Resources._11d;
+                        break;
+                    case "13d":
+                    case "13n":
+                        currentIcon.Image = Properties.Resources._13d;
+                        break;
+                    case "50d":
+                    case "50n":
+                        currentIcon.Image = Properties.Resources._50d;
+                        break;
+                }      
+            }
         }
+
+
 
         public string convertTimezone(string utcString, int timezoneSeconds)
         {
@@ -101,8 +196,9 @@ namespace XMLWeather
             try
             {
                 Form1.citySearch = cityInput.Text;
-                Form1.ExtractCurrent();
+                Form1.days.Clear();
                 Form1.ExtractForecast();
+                Form1.ExtractCurrent();
                 DisplayWeather();
             }
 
@@ -115,9 +211,6 @@ namespace XMLWeather
 
         private void showTestingLabel()
         {
-            Form1.days[0].currentTimeUTC = convertTimezone(Form1.days[0].currentTimeLocal, Form1.days[0].timezone);
-
-
             testingLabel.Text = "City: " + Form1.days[0].location;
             testingLabel.Text += "\nTimezone: " + Form1.days[0].timezone;
             testingLabel.Text += "\nSunRise: " + Form1.days[0].sunRise;
@@ -125,28 +218,11 @@ namespace XMLWeather
             testingLabel.Text += "\nTempLow: " + Form1.days[0].tempLow;
             testingLabel.Text += "\nTempMax: " + Form1.days[0].tempHigh;
             testingLabel.Text += "\nFeelsLike: " + Form1.days[0].feelsLike;
-            testingLabel.Text += "\nWeather: " + Form1.days[0].condition;
+            testingLabel.Text += "\nWeather: " + Form1.days[0].conditionText;
 
 
             testingLabel.Text += "\nTime_UTC: " + Form1.days[0].currentTimeUTC;
             testingLabel.Text += "\nTime_Local: " + Form1.days[0].currentTimeLocal;
-
-
-
-            //testingLabel.Text += "\n\nTime_UTC: " + Form1.days[0].currentTimeLocal;
-
-            //Form1.days[0].currentTimeUTC = convertTimezone(Form1.days[0].currentTimeUTC, Form1.days[0].timezone);
-
-            //testingLabel.Text += Form1.days[0].currentTimeUTC;
-
-            //dayNightColours();
-
-            //testingLabel.BackColor = ColorTranslator.FromHtml("#828A95");
-
-            //timeOutput.Text = DateTime.Now.ToString("hh:mm:ss");
-
-            //timeOutput.Text = convertTimezone(timeOutput.Text, Form1.days[0].timezone);
-
         }
 
         private string roundTemp(string temperature)
