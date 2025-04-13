@@ -21,11 +21,10 @@ namespace XMLWeather
         public Form1()
         {
             InitializeComponent();
-
             ExtractForecast();
             ExtractCurrent();
 
-            // open weather screen for todays weather
+            // open weather screen
             CurrentScreen cs = new CurrentScreen();
             this.Controls.Add(cs);
         }
@@ -70,11 +69,13 @@ namespace XMLWeather
             reader.ReadToFollowing("sun");
             days[0].sunRise = reader.GetAttribute("rise");
             days[0].sunSet = reader.GetAttribute("set");
-            //format 
+            //format and convert
             days[0].sunRise = days[0].sunRise.Remove(0, 11);
             days[0].sunSet = days[0].sunSet.Remove(0, 11);
             days[0].sunRise = days[0].sunRise.Remove(5, 3);
             days[0].sunSet = days[0].sunSet.Remove(5, 3);
+            days[0].sunRise = ConvertTimezone(days[0].sunRise, days[0].timezone);
+            days[0].sunSet = ConvertTimezone(days[0].sunSet, days[0].timezone);
 
             //temp
             reader.ReadToFollowing("temperature");
@@ -97,14 +98,42 @@ namespace XMLWeather
             Day.currentDateTime = DateTime.UtcNow.AddSeconds(days[0].timezone);
 
             days[0].currentTimeLocal = Day.currentDateTime.ToString("HH:mm");
+
+
+            foreach (Day d in days)
+            {
+                d.currentTemp = RoundTemp(d.currentTemp);
+                d.tempLow = RoundTemp(d.tempLow);
+                d.tempHigh = RoundTemp(d.tempHigh);
+            }
         }
 
-        private string roundTemp(string temperature)
+        private static string RoundTemp(string temperature)
         {
             double temp = Convert.ToDouble(temperature);
             temp = Math.Round(temp, 0);
 
             return temp.ToString();
+        }
+
+        //because sunrise and sunset are not DateTime objects, i manually convert with methods below
+        private static int StringToSeconds(string timeString)
+        {
+            int seconds = Convert.ToInt32(timeString.Substring(0, 2)) * 3600;
+            seconds += Convert.ToInt32(timeString.Substring(3, 2)) * 60;
+            return seconds;
+        }
+
+        private static string ConvertTimezone(string utcString, int timezoneSeconds)
+        {
+            int seconds = StringToSeconds(utcString);
+            seconds = (seconds + timezoneSeconds + 86400) % 86400;
+
+            int hrs = seconds / 3600;
+            int mins = (seconds % 3600) / 60;
+            int secs = seconds % 60;
+
+            return $"{hrs:00}:{mins:00}";
         }
     }
 }

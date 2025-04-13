@@ -31,7 +31,6 @@
             this.currentOutput = new System.Windows.Forms.Label();
             this.todayLabel = new System.Windows.Forms.Label();
             this.forecastLabel = new System.Windows.Forms.Label();
-            this.testingLabel = new System.Windows.Forms.Label();
             this.cityInput = new System.Windows.Forms.TextBox();
             this.searchIcon = new System.Windows.Forms.PictureBox();
             this.searchLineLabel = new System.Windows.Forms.Label();
@@ -108,16 +107,6 @@
             this.forecastLabel.TabIndex = 41;
             this.forecastLabel.Text = "7 Day";
             // 
-            // testingLabel
-            // 
-            this.testingLabel.BackColor = System.Drawing.Color.Chartreuse;
-            this.testingLabel.ForeColor = System.Drawing.Color.Red;
-            this.testingLabel.Location = new System.Drawing.Point(236, -260);
-            this.testingLabel.Name = "testingLabel";
-            this.testingLabel.Size = new System.Drawing.Size(198, 294);
-            this.testingLabel.TabIndex = 43;
-            this.testingLabel.Text = "testingBox";
-            // 
             // cityInput
             // 
             this.cityInput.BorderStyle = System.Windows.Forms.BorderStyle.None;
@@ -139,7 +128,7 @@
             this.searchIcon.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.searchIcon.TabIndex = 48;
             this.searchIcon.TabStop = false;
-            this.searchIcon.Click += new System.EventHandler(this.searchIcon_Click);
+            this.searchIcon.Click += new System.EventHandler(this.SearchIcon_Click);
             // 
             // searchLineLabel
             // 
@@ -538,7 +527,6 @@
             this.Controls.Add(this.forecastDay3);
             this.Controls.Add(this.forecastDay2);
             this.Controls.Add(this.forecastDay1);
-            this.Controls.Add(this.testingLabel);
             this.Controls.Add(this.celsius1);
             this.Controls.Add(this.highLow5);
             this.Controls.Add(this.highLow4);
@@ -591,7 +579,6 @@
         private System.Windows.Forms.Label currentOutput;
         private System.Windows.Forms.Label todayLabel;
         private System.Windows.Forms.Label forecastLabel;
-        private System.Windows.Forms.Label testingLabel;
         private System.Windows.Forms.TextBox cityInput;
         private System.Windows.Forms.PictureBox searchIcon;
         private System.Windows.Forms.Label searchLineLabel;
