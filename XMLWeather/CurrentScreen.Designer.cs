@@ -63,6 +63,11 @@
             this.highLow4 = new System.Windows.Forms.Label();
             this.highLow5 = new System.Windows.Forms.Label();
             this.celsius1 = new System.Windows.Forms.Label();
+            this.forecastDay1 = new System.Windows.Forms.Label();
+            this.forecastDay2 = new System.Windows.Forms.Label();
+            this.forecastDay3 = new System.Windows.Forms.Label();
+            this.forecastDay4 = new System.Windows.Forms.Label();
+            this.forecastDay5 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.searchIcon)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.currentConditionImage)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.forecastIcon1)).BeginInit();
@@ -107,7 +112,7 @@
             // 
             this.testingLabel.BackColor = System.Drawing.Color.Chartreuse;
             this.testingLabel.ForeColor = System.Drawing.Color.Red;
-            this.testingLabel.Location = new System.Drawing.Point(46, 216);
+            this.testingLabel.Location = new System.Drawing.Point(236, -260);
             this.testingLabel.Name = "testingLabel";
             this.testingLabel.Size = new System.Drawing.Size(198, 294);
             this.testingLabel.TabIndex = 43;
@@ -173,11 +178,11 @@
             this.dayOfWeekOutput.BackColor = System.Drawing.Color.Transparent;
             this.dayOfWeekOutput.Font = new System.Drawing.Font("Century Gothic", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.dayOfWeekOutput.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.dayOfWeekOutput.Location = new System.Drawing.Point(-1, 0);
+            this.dayOfWeekOutput.Location = new System.Drawing.Point(-8, 1);
             this.dayOfWeekOutput.Name = "dayOfWeekOutput";
             this.dayOfWeekOutput.Size = new System.Drawing.Size(117, 19);
             this.dayOfWeekOutput.TabIndex = 52;
-            this.dayOfWeekOutput.Text = "Thu. Apr. 10";
+            this.dayOfWeekOutput.Text = "Wed. Apr. 09";
             this.dayOfWeekOutput.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             // 
             // conditionOutput
@@ -194,10 +199,10 @@
             // currentConditionImage
             // 
             this.currentConditionImage.BackColor = System.Drawing.Color.Transparent;
-            this.currentConditionImage.Image = global::XMLWeather.Properties.Resources.Partial_Cloudy_Day;
-            this.currentConditionImage.Location = new System.Drawing.Point(25, 123);
+            this.currentConditionImage.Image = global::XMLWeather.Properties.Resources._04d;
+            this.currentConditionImage.Location = new System.Drawing.Point(10, 103);
             this.currentConditionImage.Name = "currentConditionImage";
-            this.currentConditionImage.Size = new System.Drawing.Size(64, 53);
+            this.currentConditionImage.Size = new System.Drawing.Size(103, 89);
             this.currentConditionImage.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.currentConditionImage.TabIndex = 54;
             this.currentConditionImage.TabStop = false;
@@ -340,10 +345,10 @@
             // forecastIcon1
             // 
             this.forecastIcon1.BackColor = System.Drawing.Color.Transparent;
-            this.forecastIcon1.Image = global::XMLWeather.Properties.Resources.Partial_Cloudy_Day;
-            this.forecastIcon1.Location = new System.Drawing.Point(1, 379);
+            this.forecastIcon1.Image = global::XMLWeather.Properties.Resources._13d;
+            this.forecastIcon1.Location = new System.Drawing.Point(-3, 368);
             this.forecastIcon1.Name = "forecastIcon1";
-            this.forecastIcon1.Size = new System.Drawing.Size(54, 31);
+            this.forecastIcon1.Size = new System.Drawing.Size(64, 47);
             this.forecastIcon1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.forecastIcon1.TabIndex = 68;
             this.forecastIcon1.TabStop = false;
@@ -351,10 +356,10 @@
             // forecastIcon3
             // 
             this.forecastIcon3.BackColor = System.Drawing.Color.Transparent;
-            this.forecastIcon3.Image = global::XMLWeather.Properties.Resources.Partial_Cloudy_Day;
-            this.forecastIcon3.Location = new System.Drawing.Point(108, 379);
+            this.forecastIcon3.Image = global::XMLWeather.Properties.Resources._13d;
+            this.forecastIcon3.Location = new System.Drawing.Point(104, 369);
             this.forecastIcon3.Name = "forecastIcon3";
-            this.forecastIcon3.Size = new System.Drawing.Size(54, 31);
+            this.forecastIcon3.Size = new System.Drawing.Size(61, 47);
             this.forecastIcon3.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.forecastIcon3.TabIndex = 69;
             this.forecastIcon3.TabStop = false;
@@ -362,10 +367,10 @@
             // forecastIcon2
             // 
             this.forecastIcon2.BackColor = System.Drawing.Color.Transparent;
-            this.forecastIcon2.Image = global::XMLWeather.Properties.Resources.Partial_Cloudy_Day;
-            this.forecastIcon2.Location = new System.Drawing.Point(54, 379);
+            this.forecastIcon2.Image = global::XMLWeather.Properties.Resources._13d;
+            this.forecastIcon2.Location = new System.Drawing.Point(52, 369);
             this.forecastIcon2.Name = "forecastIcon2";
-            this.forecastIcon2.Size = new System.Drawing.Size(54, 31);
+            this.forecastIcon2.Size = new System.Drawing.Size(59, 46);
             this.forecastIcon2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.forecastIcon2.TabIndex = 70;
             this.forecastIcon2.TabStop = false;
@@ -373,10 +378,10 @@
             // forecastIcon5
             // 
             this.forecastIcon5.BackColor = System.Drawing.Color.Transparent;
-            this.forecastIcon5.Image = global::XMLWeather.Properties.Resources.Partial_Cloudy_Day;
-            this.forecastIcon5.Location = new System.Drawing.Point(216, 379);
+            this.forecastIcon5.Image = global::XMLWeather.Properties.Resources._13d;
+            this.forecastIcon5.Location = new System.Drawing.Point(214, 369);
             this.forecastIcon5.Name = "forecastIcon5";
-            this.forecastIcon5.Size = new System.Drawing.Size(54, 31);
+            this.forecastIcon5.Size = new System.Drawing.Size(57, 46);
             this.forecastIcon5.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.forecastIcon5.TabIndex = 71;
             this.forecastIcon5.TabStop = false;
@@ -384,10 +389,10 @@
             // forecastIcon4
             // 
             this.forecastIcon4.BackColor = System.Drawing.Color.Transparent;
-            this.forecastIcon4.Image = global::XMLWeather.Properties.Resources.Partial_Cloudy_Day;
-            this.forecastIcon4.Location = new System.Drawing.Point(162, 379);
+            this.forecastIcon4.Image = global::XMLWeather.Properties.Resources._13d;
+            this.forecastIcon4.Location = new System.Drawing.Point(158, 369);
             this.forecastIcon4.Name = "forecastIcon4";
-            this.forecastIcon4.Size = new System.Drawing.Size(54, 31);
+            this.forecastIcon4.Size = new System.Drawing.Size(63, 46);
             this.forecastIcon4.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.forecastIcon4.TabIndex = 72;
             this.forecastIcon4.TabStop = false;
@@ -462,12 +467,78 @@
             this.celsius1.TabIndex = 78;
             this.celsius1.Text = "°C";
             // 
+            // forecastDay1
+            // 
+            this.forecastDay1.BackColor = System.Drawing.Color.Transparent;
+            this.forecastDay1.Font = new System.Drawing.Font("Century Gothic", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.forecastDay1.ForeColor = System.Drawing.SystemColors.ControlLightLight;
+            this.forecastDay1.Location = new System.Drawing.Point(4, 341);
+            this.forecastDay1.Name = "forecastDay1";
+            this.forecastDay1.Size = new System.Drawing.Size(49, 19);
+            this.forecastDay1.TabIndex = 79;
+            this.forecastDay1.Text = "Thu";
+            this.forecastDay1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // forecastDay2
+            // 
+            this.forecastDay2.BackColor = System.Drawing.Color.Transparent;
+            this.forecastDay2.Font = new System.Drawing.Font("Century Gothic", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.forecastDay2.ForeColor = System.Drawing.SystemColors.ControlLightLight;
+            this.forecastDay2.Location = new System.Drawing.Point(56, 341);
+            this.forecastDay2.Name = "forecastDay2";
+            this.forecastDay2.Size = new System.Drawing.Size(49, 19);
+            this.forecastDay2.TabIndex = 80;
+            this.forecastDay2.Text = "Fri";
+            this.forecastDay2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // forecastDay3
+            // 
+            this.forecastDay3.BackColor = System.Drawing.Color.Transparent;
+            this.forecastDay3.Font = new System.Drawing.Font("Century Gothic", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.forecastDay3.ForeColor = System.Drawing.SystemColors.ControlLightLight;
+            this.forecastDay3.Location = new System.Drawing.Point(111, 342);
+            this.forecastDay3.Name = "forecastDay3";
+            this.forecastDay3.Size = new System.Drawing.Size(49, 19);
+            this.forecastDay3.TabIndex = 81;
+            this.forecastDay3.Text = "Sat";
+            this.forecastDay3.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // forecastDay4
+            // 
+            this.forecastDay4.BackColor = System.Drawing.Color.Transparent;
+            this.forecastDay4.Font = new System.Drawing.Font("Century Gothic", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.forecastDay4.ForeColor = System.Drawing.SystemColors.ControlLightLight;
+            this.forecastDay4.Location = new System.Drawing.Point(165, 343);
+            this.forecastDay4.Name = "forecastDay4";
+            this.forecastDay4.Size = new System.Drawing.Size(49, 19);
+            this.forecastDay4.TabIndex = 82;
+            this.forecastDay4.Text = "Sun";
+            this.forecastDay4.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // forecastDay5
+            // 
+            this.forecastDay5.BackColor = System.Drawing.Color.Transparent;
+            this.forecastDay5.Font = new System.Drawing.Font("Century Gothic", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.forecastDay5.ForeColor = System.Drawing.SystemColors.ControlLightLight;
+            this.forecastDay5.Location = new System.Drawing.Point(218, 342);
+            this.forecastDay5.Name = "forecastDay5";
+            this.forecastDay5.Size = new System.Drawing.Size(49, 19);
+            this.forecastDay5.TabIndex = 83;
+            this.forecastDay5.Text = "Mon";
+            this.forecastDay5.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
             // CurrentScreen
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.RosyBrown;
             this.BackgroundImage = global::XMLWeather.Properties.Resources.Blank_Day;
+            this.Controls.Add(this.forecastDay5);
+            this.Controls.Add(this.forecastDay4);
+            this.Controls.Add(this.forecastDay3);
+            this.Controls.Add(this.forecastDay2);
+            this.Controls.Add(this.forecastDay1);
+            this.Controls.Add(this.testingLabel);
             this.Controls.Add(this.celsius1);
             this.Controls.Add(this.highLow5);
             this.Controls.Add(this.highLow4);
@@ -475,7 +546,6 @@
             this.Controls.Add(this.highLow2);
             this.Controls.Add(this.highLow1);
             this.Controls.Add(this.dayOfWeekOutput);
-            this.Controls.Add(this.testingLabel);
             this.Controls.Add(this.forecastIcon4);
             this.Controls.Add(this.forecastIcon5);
             this.Controls.Add(this.forecastIcon2);
@@ -553,5 +623,10 @@
         private System.Windows.Forms.Label highLow4;
         private System.Windows.Forms.Label highLow5;
         private System.Windows.Forms.Label celsius1;
+        private System.Windows.Forms.Label forecastDay1;
+        private System.Windows.Forms.Label forecastDay2;
+        private System.Windows.Forms.Label forecastDay3;
+        private System.Windows.Forms.Label forecastDay4;
+        private System.Windows.Forms.Label forecastDay5;
     }
 }

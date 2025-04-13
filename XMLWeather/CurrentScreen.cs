@@ -44,13 +44,16 @@ namespace XMLWeather
             //current time in local
             timeOutput.Text = $"{Day.currentDateTime.ToString("hh:mm tt")}";
 
-            dayNightColours();
+            //dayNightColours();
 
             //convert and output sunrise/sunset times --- move into Form1 later
             Form1.days[0].sunRise = convertTimezone(Form1.days[0].sunRise, Form1.days[0].timezone);
-            Form1.days[0].sunSet = convertTimezone(Form1.days[0].sunSet, Form1.days[0].timezone);  
+            Form1.days[0].sunSet = convertTimezone(Form1.days[0].sunSet, Form1.days[0].timezone);
+
             sunRiseOutput.Text = formatSunData(Form1.days[0].sunRise);
             sunSetOutput.Text = formatSunData(Form1.days[0].sunSet);
+            sunRiseOutput.Text = Form1.days[0].sunRise;
+            sunSetOutput.Text = Form1.days[0].sunSet;
 
             //condition
             conditionOutput.Text = Form1.days[0].conditionText;      //how can I not repeat myself with this switch? 
@@ -106,6 +109,9 @@ namespace XMLWeather
             string[] forecastNames = new string[] {"forecastTemp1", "forecastTemp2", "forecastTemp3", "forecastTemp4", "forecastTemp5"};
             string[] highLowNames = new string[] {"highLow1", "highLow2", "highLow3", "highLow4", "highLow5"};
             string[] forecastIcons = new string[] {"forecastIcon1", "forecastIcon2", "forecastIcon3", "forecastIcon4", "forecastIcon5" };
+            string[] forecastDays = new string[] {"forecastDay1", "forecastDay2", "forecastDay3", "forecastDay4", "forecastDay5"};
+
+            //for loops keep code DRY and easy to edit
 
             for (int i = 0; i < forecastNames.Length; i++)
             {
@@ -169,31 +175,15 @@ namespace XMLWeather
                         break;
                 }      
             }
-            showTestingLabel();
+
+            for (int i = 0; i < forecastDays.Length; i++)
+            {
+                Label currentLabel = (Label)this.Controls.Find(forecastDays[i], true).FirstOrDefault();
+
+                currentLabel.Text = Day.currentDateTime.AddDays(i + 1).ToString("ddd");
+            }
+            //showTestingLabel();
         }
-
-
-
-        public string convertTimezone(string utcString, int timezoneSeconds)
-        {
-            int seconds = stringToSeconds(utcString);
-            seconds = (seconds + timezoneSeconds + 86400) % 86400;
-
-            int hrs = seconds / 3600;
-            int mins = (seconds % 3600) / 60;
-            int secs = seconds % 60;
-
-            return $"{hrs:00}:{mins:00}";
-        }
-
-
-        public int stringToSeconds(string timeString)
-        {
-            int seconds = Convert.ToInt32(timeString.Substring(0, 2)) * 3600;
-            seconds += Convert.ToInt32(timeString.Substring(3, 2)) * 60;
-            return seconds;
-        }
-
 
         private void searchIcon_Click(object sender, EventArgs e)
         {
@@ -205,7 +195,6 @@ namespace XMLWeather
                 Form1.ExtractCurrent();
                 DisplayWeather();
             }
-
             catch
             {
                 cityInput.Text = "NOT FOUND";
@@ -220,16 +209,10 @@ namespace XMLWeather
 
             testingLabel.Text += "\n\nTime_Local: " + Form1.days[0].currentTimeLocal;
 
-            testingLabel.Text += "\nSunRiseSecs: " + stringToSeconds(Form1.days[0].sunRise);
-            testingLabel.Text += "\nSunSetSecs: " + stringToSeconds(Form1.days[0].sunSet);
+            testingLabel.Text += "\nSunRiseSecs: " + Form1.stringToSeconds(Form1.days[0].sunRise);
+            testingLabel.Text += "\nSunSetSecs: " + Form1.stringToSeconds(Form1.days[0].sunSet);
 
-            testingLabel.Text += "\nCurrentTimeSecs: " + stringToSeconds(Form1.days[0].currentTimeLocal);
-
-            //testingLabel.Text += "\nTempLow: " + Form1.days[0].tempLow;
-            //testingLabel.Text += "\nTempMax: " + Form1.days[0].tempHigh;
-            //testingLabel.Text += "\nFeelsLike: " + Form1.days[0].feelsLike;
-            //testingLabel.Text += "\nWeather: " + Form1.days[0].conditionText;
-            
+            testingLabel.Text += "\nCurrentTimeSecs: " + Form1.stringToSeconds(Form1.days[0].currentTimeLocal);
         }
 
         private string roundTemp(string temperature)
@@ -252,11 +235,11 @@ namespace XMLWeather
             const string lightGreyHex = "#D5D2C6";
             //white, blackBlue are shared
 
-            int currentTimeSecs = stringToSeconds(Form1.days[0].currentTimeLocal);
-            int sunRiseSecs = stringToSeconds(Form1.days[0].sunRise);
-            int sunSetSecs = stringToSeconds(Form1.days[0].sunSet);
+            int currentTimeSecs = Form1.stringToSeconds(Form1.days[0].currentTimeLocal);
+            int sunRiseSecs = Form1.stringToSeconds(Form1.days[0].sunRise);
+            int sunSetSecs = Form1.stringToSeconds(Form1.days[0].sunSet);
 
-            bool isDay = !(sunRiseSecs < currentTimeSecs && currentTimeSecs < sunSetSecs);
+            bool isDay = (sunRiseSecs > currentTimeSecs && currentTimeSecs < sunSetSecs);
             
             this.BackgroundImage = (isDay) ? Resources.Blank_Day : Resources.Blank_Night;
             searchIcon.Image = (isDay) ? Resources.Day_Search_Icon : Resources.Night_Search_Icon;
@@ -265,7 +248,25 @@ namespace XMLWeather
             celsius1.ForeColor = celsuis2.ForeColor = celsius3.ForeColor =
                 (isDay) ? ColorTranslator.FromHtml(blackHex) : ColorTranslator.FromHtml(lightGreyHex);
 
+        }
 
+        public int stringToSeconds(string timeString)
+        {
+            int seconds = Convert.ToInt32(timeString.Substring(0, 2)) * 3600;
+            seconds += Convert.ToInt32(timeString.Substring(3, 2)) * 60;
+            return seconds;
+        }
+
+        private string convertTimezone(string utcString, int timezoneSeconds)
+        {
+            int seconds = stringToSeconds(utcString);
+            seconds = (seconds + timezoneSeconds + 86400) % 86400;
+
+            int hrs = seconds / 3600;
+            int mins = (seconds % 3600) / 60;
+            int secs = seconds % 60;
+
+            return $"{hrs:00}:{mins:00}";
         }
 
         private string formatSunData(string sunData)
@@ -282,7 +283,6 @@ namespace XMLWeather
                 AMPM = "AM";
             }
             sunData = $"{tempHrs:00}:{sunData.Substring(3, 2)} {AMPM}";
-
             return $"{sunData}";
         }
     }

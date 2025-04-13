@@ -122,6 +122,8 @@ namespace XMLWeather
             return seconds;
         }
 
+        
+
         private string roundTemp(string temperature)
         {
             double temp = Convert.ToDouble(temperature);
