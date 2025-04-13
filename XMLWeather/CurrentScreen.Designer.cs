@@ -107,7 +107,7 @@
             // 
             this.testingLabel.BackColor = System.Drawing.Color.Chartreuse;
             this.testingLabel.ForeColor = System.Drawing.Color.Red;
-            this.testingLabel.Location = new System.Drawing.Point(236, -260);
+            this.testingLabel.Location = new System.Drawing.Point(46, 216);
             this.testingLabel.Name = "testingLabel";
             this.testingLabel.Size = new System.Drawing.Size(198, 294);
             this.testingLabel.TabIndex = 43;
@@ -127,14 +127,14 @@
             // searchIcon
             // 
             this.searchIcon.BackColor = System.Drawing.Color.Transparent;
-            this.searchIcon.Image = global::XMLWeather.Properties.Resources.Search_Icon;
+            this.searchIcon.Image = global::XMLWeather.Properties.Resources.Night_Search_Icon;
             this.searchIcon.Location = new System.Drawing.Point(13, 46);
             this.searchIcon.Name = "searchIcon";
             this.searchIcon.Size = new System.Drawing.Size(52, 39);
             this.searchIcon.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.searchIcon.TabIndex = 48;
             this.searchIcon.TabStop = false;
-            this.searchIcon.Click += new System.EventHandler(this.pictureBoxTest_Click);
+            this.searchIcon.Click += new System.EventHandler(this.searchIcon_Click);
             // 
             // searchLineLabel
             // 

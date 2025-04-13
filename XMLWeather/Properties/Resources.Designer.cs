@@ -203,9 +203,9 @@ namespace XMLWeather.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap Partial_Cloudy_Day {
+        internal static System.Drawing.Bitmap Day_Search_Icon {
             get {
-                object obj = ResourceManager.GetObject("Partial_Cloudy_Day", resourceCulture);
+                object obj = ResourceManager.GetObject("Day_Search_Icon", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -213,9 +213,19 @@ namespace XMLWeather.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap Search_Icon {
+        internal static System.Drawing.Bitmap Night_Search_Icon {
             get {
-                object obj = ResourceManager.GetObject("Search_Icon", resourceCulture);
+                object obj = ResourceManager.GetObject("Night_Search_Icon", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Partial_Cloudy_Day {
+            get {
+                object obj = ResourceManager.GetObject("Partial_Cloudy_Day", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

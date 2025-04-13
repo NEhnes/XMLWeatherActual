@@ -124,11 +124,14 @@
   <data name="Blank_Night" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Blank_SinglePage_Night (Resized).png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="Day_Search_Icon" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Day_Search_Icon.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Night_Search_Icon" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\blackBlue_Search.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="Partial_Cloudy_Day" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Partial_Cloudy_Day.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="Search_Icon" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\blackBlue_Search.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="_01d" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\01d.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>

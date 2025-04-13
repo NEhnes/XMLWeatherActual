@@ -93,12 +93,11 @@ namespace XMLWeather
             reader.ReadToFollowing("lastupdate");
             days[0].lastUpdate = reader.GetAttribute("value");
 
-            
 
             //convert to local
             Day.currentDateTime = DateTime.UtcNow.AddSeconds(days[0].timezone);
 
-
+            days[0].currentTimeLocal = Day.currentDateTime.ToString("HH:mm");
         }
 
         public static string convertTimezone(string utcString, int timezoneSeconds)
@@ -121,6 +120,14 @@ namespace XMLWeather
             int seconds = Convert.ToInt32(timeString.Substring(0, 2)) * 3600;
             seconds += Convert.ToInt32(timeString.Substring(3, 2)) * 60;
             return seconds;
+        }
+
+        private string roundTemp(string temperature)
+        {
+            double temp = Convert.ToDouble(temperature);
+            temp = Math.Round(temp, 0);
+
+            return temp.ToString();
         }
     }
 }

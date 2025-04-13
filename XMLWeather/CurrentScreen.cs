@@ -6,6 +6,7 @@ using System.Data;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
+using XMLWeather.Properties;
 
 namespace XMLWeather
 {
@@ -42,6 +43,8 @@ namespace XMLWeather
 
             //current time in local
             timeOutput.Text = $"{Day.currentDateTime.ToString("hh:mm tt")}";
+
+            dayNightColours();
 
             //convert and output sunrise/sunset times --- move into Form1 later
             Form1.days[0].sunRise = convertTimezone(Form1.days[0].sunRise, Form1.days[0].timezone);
@@ -166,6 +169,7 @@ namespace XMLWeather
                         break;
                 }      
             }
+            showTestingLabel();
         }
 
 
@@ -191,7 +195,7 @@ namespace XMLWeather
         }
 
 
-        private void pictureBoxTest_Click(object sender, EventArgs e)
+        private void searchIcon_Click(object sender, EventArgs e)
         {
             try
             {
@@ -211,18 +215,21 @@ namespace XMLWeather
 
         private void showTestingLabel()
         {
-            testingLabel.Text = "City: " + Form1.days[0].location;
-            testingLabel.Text += "\nTimezone: " + Form1.days[0].timezone;
-            testingLabel.Text += "\nSunRise: " + Form1.days[0].sunRise;
+            testingLabel.Text = "\nSunRise: " + Form1.days[0].sunRise;
             testingLabel.Text += "\nSunSet: " + Form1.days[0].sunSet;
-            testingLabel.Text += "\nTempLow: " + Form1.days[0].tempLow;
-            testingLabel.Text += "\nTempMax: " + Form1.days[0].tempHigh;
-            testingLabel.Text += "\nFeelsLike: " + Form1.days[0].feelsLike;
-            testingLabel.Text += "\nWeather: " + Form1.days[0].conditionText;
 
+            testingLabel.Text += "\n\nTime_Local: " + Form1.days[0].currentTimeLocal;
 
-            testingLabel.Text += "\nTime_UTC: " + Form1.days[0].currentTimeUTC;
-            testingLabel.Text += "\nTime_Local: " + Form1.days[0].currentTimeLocal;
+            testingLabel.Text += "\nSunRiseSecs: " + stringToSeconds(Form1.days[0].sunRise);
+            testingLabel.Text += "\nSunSetSecs: " + stringToSeconds(Form1.days[0].sunSet);
+
+            testingLabel.Text += "\nCurrentTimeSecs: " + stringToSeconds(Form1.days[0].currentTimeLocal);
+
+            //testingLabel.Text += "\nTempLow: " + Form1.days[0].tempLow;
+            //testingLabel.Text += "\nTempMax: " + Form1.days[0].tempHigh;
+            //testingLabel.Text += "\nFeelsLike: " + Form1.days[0].feelsLike;
+            //testingLabel.Text += "\nWeather: " + Form1.days[0].conditionText;
+            
         }
 
         private string roundTemp(string temperature)
@@ -245,23 +252,20 @@ namespace XMLWeather
             const string lightGreyHex = "#D5D2C6";
             //white, blackBlue are shared
 
+            int currentTimeSecs = stringToSeconds(Form1.days[0].currentTimeLocal);
+            int sunRiseSecs = stringToSeconds(Form1.days[0].sunRise);
+            int sunSetSecs = stringToSeconds(Form1.days[0].sunSet);
 
-            if (stringToSeconds(Form1.days[0].sunRise) < stringToSeconds(Form1.days[0].currentTimeLocal) && stringToSeconds(Form1.days[0].sunSet) > stringToSeconds(Form1.days[0].currentTimeUTC))
-            {
-                this.BackgroundImage = Properties.Resources.Blank_Day;
+            bool isDay = !(sunRiseSecs < currentTimeSecs && currentTimeSecs < sunSetSecs);
+            
+            this.BackgroundImage = (isDay) ? Resources.Blank_Day : Resources.Blank_Night;
+            searchIcon.Image = (isDay) ? Resources.Day_Search_Icon : Resources.Night_Search_Icon;
 
-                cityInput.ForeColor = ColorTranslator.FromHtml(daySearchHex);
+            bigTempOutput.ForeColor = dailyLowOutput.ForeColor = dailyHighOutput.ForeColor = 
+            celsius1.ForeColor = celsuis2.ForeColor = celsius3.ForeColor =
+                (isDay) ? ColorTranslator.FromHtml(blackHex) : ColorTranslator.FromHtml(lightGreyHex);
 
-                searchLine.ForeColor = ColorTranslator.FromHtml(blackblueHex);
 
-                todayLabel.ForeColor =
-                forecastLabel.ForeColor = searchLineLabel.ForeColor =
-                Color.FromArgb(31, 27, 40);
-            }
-            else
-            {
-                this.BackgroundImage = Properties.Resources.Blank_Night;
-            }
         }
 
         private string formatSunData(string sunData)
