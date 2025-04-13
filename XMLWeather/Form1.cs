@@ -79,8 +79,6 @@ namespace XMLWeather
             //temp
             reader.ReadToFollowing("temperature");
             days[0].currentTemp = reader.GetAttribute("value");
-            days[0].tempLow = reader.GetAttribute("min");
-            days[0].tempHigh = reader.GetAttribute("max");
 
             //feels like
             reader.ReadToFollowing("feels_like");
@@ -89,6 +87,7 @@ namespace XMLWeather
             //weather condition
             reader.ReadToFollowing("weather");
             days[0].conditionText = reader.GetAttribute("value").ToUpper();
+            days[0].conditionCode = reader.GetAttribute("icon");
 
             reader.ReadToFollowing("lastupdate");
             days[0].lastUpdate = reader.GetAttribute("value");
@@ -99,30 +98,6 @@ namespace XMLWeather
 
             days[0].currentTimeLocal = Day.currentDateTime.ToString("HH:mm");
         }
-
-        public static string convertTimezone(string utcString, int timezoneSeconds)
-        {
-            int seconds = stringToSeconds(utcString);
-
-            seconds -= timezoneSeconds;
-            //seconds = (seconds + timezoneSeconds + 86400) % 86400;
-
-            int hrs = seconds % 3600;
-            int mins = (seconds % 3600) / 60;
-            int secs = seconds % 60;
-
-            return $"{hrs:00}:{mins:00}";
-        }
-
-
-        public static int stringToSeconds(string timeString) //verified working
-        {
-            int seconds = Convert.ToInt32(timeString.Substring(0, 2)) * 3600;
-            seconds += Convert.ToInt32(timeString.Substring(3, 2)) * 60;
-            return seconds;
-        }
-
-        
 
         private string roundTemp(string temperature)
         {

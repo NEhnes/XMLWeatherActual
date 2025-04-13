@@ -156,7 +156,7 @@
             // 
             this.searchLine.BackColor = System.Drawing.Color.Transparent;
             this.searchLine.Font = new System.Drawing.Font("Microsoft Sans Serif", 36F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.searchLine.Location = new System.Drawing.Point(55, 34);
+            this.searchLine.Location = new System.Drawing.Point(55, 32);
             this.searchLine.Name = "searchLine";
             this.searchLine.Size = new System.Drawing.Size(215, 68);
             this.searchLine.TabIndex = 49;

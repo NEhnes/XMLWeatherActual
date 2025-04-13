@@ -20,7 +20,7 @@ namespace XMLWeather
 
         public void DisplayWeather()
         {
-            //Format temps to 0 decimal places --- move into Form1 later
+            //Format temps to 0 decimal places
             for (int i = 0; i < Form1.days.Count; i++)
             {
                 Form1.days[i].currentTemp = roundTemp(Form1.days[i].currentTemp);
@@ -28,9 +28,7 @@ namespace XMLWeather
                 Form1.days[i].tempHigh = roundTemp(Form1.days[i].tempHigh);
             }
 
-            //START OF CURRENT
-
-            //curent temperature labels
+            //current temperature labels
             bigTempOutput.Text = Form1.days[0].currentTemp;
             int digits = Form1.days[0].currentTemp.Length;
             celsius1.Location =
@@ -44,7 +42,7 @@ namespace XMLWeather
             //current time in local
             timeOutput.Text = $"{Day.currentDateTime.ToString("hh:mm tt")}";
 
-            //dayNightColours();
+            dayNightColours();
 
             //convert and output sunrise/sunset times --- move into Form1 later
             Form1.days[0].sunRise = convertTimezone(Form1.days[0].sunRise, Form1.days[0].timezone);
@@ -52,8 +50,6 @@ namespace XMLWeather
 
             sunRiseOutput.Text = formatSunData(Form1.days[0].sunRise);
             sunSetOutput.Text = formatSunData(Form1.days[0].sunSet);
-            sunRiseOutput.Text = Form1.days[0].sunRise;
-            sunSetOutput.Text = Form1.days[0].sunSet;
 
             //condition
             conditionOutput.Text = Form1.days[0].conditionText;      //how can I not repeat myself with this switch? 
@@ -91,8 +87,10 @@ namespace XMLWeather
                     currentConditionImage.Image = Properties.Resources._11d;
                     break;
                 case "13d":
-                case "13n":
                     currentConditionImage.Image = Properties.Resources._13d;
+                    break;
+                case "13n":
+                    currentConditionImage.Image = Properties.Resources._13n;
                     break;
                 case "50d":
                 case "50n":
@@ -167,8 +165,15 @@ namespace XMLWeather
                         break;
                     case "13d":
                     case "13n":
-                        currentIcon.Image = Properties.Resources._13d;
-                        break;
+                        if (Form1.days[0].conditionCode[2] == 'd')
+                        {
+                            currentIcon.Image = Properties.Resources._13d;
+                        }
+                        else
+                        {
+                            currentIcon.Image = Properties.Resources._13n;
+                        }
+                            break;
                     case "50d":
                     case "50n":
                         currentIcon.Image = Properties.Resources._50d;
@@ -209,10 +214,10 @@ namespace XMLWeather
 
             testingLabel.Text += "\n\nTime_Local: " + Form1.days[0].currentTimeLocal;
 
-            testingLabel.Text += "\nSunRiseSecs: " + Form1.stringToSeconds(Form1.days[0].sunRise);
-            testingLabel.Text += "\nSunSetSecs: " + Form1.stringToSeconds(Form1.days[0].sunSet);
+            testingLabel.Text += "\nSunRiseSecs: " + stringToSeconds(Form1.days[0].sunRise);
+            testingLabel.Text += "\nSunSetSecs: " + stringToSeconds(Form1.days[0].sunSet);
 
-            testingLabel.Text += "\nCurrentTimeSecs: " + Form1.stringToSeconds(Form1.days[0].currentTimeLocal);
+            testingLabel.Text += "\nCurrentTimeSecs: " + stringToSeconds(Form1.days[0].currentTimeLocal);
         }
 
         private string roundTemp(string temperature)
@@ -225,28 +230,33 @@ namespace XMLWeather
 
         public void dayNightColours()
         {
-            //text colours for day
-            const string blackblueHex = "#000032";
-            const string whiteHex = "#FFFFE4";
-            const string daySearchHex = "#828A95";
-
-            //text colours for night
+            //hex codes
+            const string blackBlueHex = "#000032";
             const string blackHex = "#000000";
             const string lightGreyHex = "#D5D2C6";
-            //white, blackBlue are shared
+            const string pureWhiteHex = "#FFFFFF";
+            const string blueHex = "#84AAD1";
 
-            int currentTimeSecs = Form1.stringToSeconds(Form1.days[0].currentTimeLocal);
-            int sunRiseSecs = Form1.stringToSeconds(Form1.days[0].sunRise);
-            int sunSetSecs = Form1.stringToSeconds(Form1.days[0].sunSet);
+            bool isDay = (Form1.days[0].conditionCode[2] == 'd'); //condition codes ending in d represent daytime
 
-            bool isDay = (sunRiseSecs > currentTimeSecs && currentTimeSecs < sunSetSecs);
-            
-            this.BackgroundImage = (isDay) ? Resources.Blank_Day : Resources.Blank_Night;
-            searchIcon.Image = (isDay) ? Resources.Day_Search_Icon : Resources.Night_Search_Icon;
+            //ternary keeps DRY and concise
 
-            bigTempOutput.ForeColor = dailyLowOutput.ForeColor = dailyHighOutput.ForeColor = 
-            celsius1.ForeColor = celsuis2.ForeColor = celsius3.ForeColor =
+            //background and searchIcon
+            this.BackgroundImage = 
+                (isDay) ? Resources.Blank_Day : Resources.Blank_Night;
+            searchIcon.Image = 
+                (isDay) ? Resources.Day_Search_Icon : Resources.Night_Search_Icon;
+
+            searchLine.BackColor = ColorTranslator.FromHtml(blackBlueHex);
+
+            bigTempOutput.ForeColor = dailyLowOutput.ForeColor = dailyHighOutput.ForeColor = conditionOutput.ForeColor = 
+            celsius1.ForeColor = celsuis2.ForeColor = celsius3.ForeColor = sunRiseOutput.ForeColor = sunSetOutput.ForeColor =
                 (isDay) ? ColorTranslator.FromHtml(blackHex) : ColorTranslator.FromHtml(lightGreyHex);
+
+            cityInput.ForeColor = 
+                (isDay) ? ColorTranslator.FromHtml(lightGreyHex) : ColorTranslator.FromHtml(blackBlueHex);
+            searchLine.BackColor = cityInput.BackColor = 
+                (isDay) ? ColorTranslator.FromHtml(pureWhiteHex) : ColorTranslator.FromHtml(blueHex);
 
         }
 
